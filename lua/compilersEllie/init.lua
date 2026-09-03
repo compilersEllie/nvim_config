@@ -1,6 +1,6 @@
-require("cypher1.remap")
-require("cypher1.lazy")
-require("cypher1.lsp")
+require("compilersEllie.remap")
+require("compilersEllie.lazy")
+require("compilersEllie.lsp")
 
 -- vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 vim.opt.conceallevel = 1

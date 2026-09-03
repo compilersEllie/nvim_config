@@ -1,4 +1,4 @@
-require("cypher1")
+require("compilersEllie")
 
 -- Add tako's tree-sitter parser
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
