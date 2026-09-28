@@ -30,7 +30,7 @@ vim.opt.backup = false
 vim.opt.undodir = (
   (os.getenv("XDG_STATE_HOME") and (os.getenv("XDG_STATE_HOME") .. "/vim/undodir"))
   or
-  (os.getenv("HOME") .. "/.vim/undodir")
+  (os.getenv("HOME") .. "/.local/state/vim/undodir")
 )
 vim.opt.undofile = true
 
