@@ -358,11 +358,9 @@ local plugins = {
       }
     },
   },
-
   {
     "junegunn/fzf",
-    dir = "~/.fzf",
-    build = "./install --all"
+    dir = "~/.local/share/nvim/lazy/fzf/",
   },
   {
     "junegunn/fzf.vim",
