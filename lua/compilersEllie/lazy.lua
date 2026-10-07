@@ -28,30 +28,32 @@ local plugins = {
     lazy = true,
     ft = "markdown",
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    -- event = {
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    --   -- refer to `:h file-pattern` for more examples
-    --   "BufReadPre path/to/my-vault/*.md",
-    --   "BufNewFile path/to/my-vault/*.md",
-    -- },
+     event = {
+       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+       -- refer to `:h file-pattern` for more examples
+       "BufReadPre */notes*/**/*.md",
+       "BufNewFile */notes*/**/*.md",
+     },
+    cmd = { "ObsidianToday", "ObsidianDailies" },
     dependencies = {
-      -- Required.
       "nvim-lua/plenary.nvim",
-
-      -- see below for full list of optional dependencies 👇
     },
     opts = {
       disable_frontmatter = true,
       workspaces = {
         {
+          name = "notes-mobile",
+          path = "/data/data/com.termux/files/home/storage/shared/notes2",
+        },
+        {
           name = "notes",
-          path = "~/notes",
+          path = "~/src/compilersEllie/notes",
         },
       },
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
-        folder = "diary",
+        folder = "me/diary",
         -- Optional, if you want to change the date format for the ID of daily notes.
         date_format = "%Y-%m-%d",
         -- Optional, if you want to change the date format of the default alias of daily notes.
@@ -59,7 +61,7 @@ local plugins = {
         -- Optional, default tags to add to each new daily note created.
         default_tags = { "daily-notes" },
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = "templates/diary.md"
+        template = "templates/diary template.md",
       },
       templates = {
         folder = "templates",
@@ -89,6 +91,37 @@ local plugins = {
         -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
       end,
     },
+  },
+  {
+    "epwalsh/pomo.nvim",
+    version = "*",  -- Recommended, use latest release instead of latest commit
+    lazy = true,
+    cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
+    dependencies = {
+      -- Optional, but highly recommended if you want to use the "Default" timer
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      -- Example session configuration for a session called "pomodoro".
+      me = {
+        { name = "Work", duration = "10m" },
+        { name = "Short Break", duration = "5m" },
+        { name = "Work", duration = "10m" },
+        { name = "Short Break", duration = "5m" },
+        { name = "Work", duration = "10m" },
+        { name = "Short Break", duration = "5m" },
+        { name = "Work", duration = "10m" },
+        { name = "Long Break", duration = "1h" },
+      },
+      pomodoro = {
+        { name = "Work", duration = "25m" },
+        { name = "Short Break", duration = "5m" },
+        { name = "Work", duration = "25m" },
+        { name = "Short Break", duration = "5m" },
+        { name = "Work", duration = "25m" },
+        { name = "Long Break", duration = "15m" },
+      },
+    }
   },
   -- {
   --   'MeanderingProgrammer/render-markdown.nvim',
