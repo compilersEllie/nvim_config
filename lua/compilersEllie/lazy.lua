@@ -44,7 +44,7 @@ local plugins = {
       workspaces = {
         {
           name = "notes-mobile",
-          path = "/data/data/com.termux/files/home/storage/shared/notes2",
+          path = "/data/data/com.termux/files/home/storage/shared/notes",
         },
         {
           name = "notes",
@@ -61,10 +61,10 @@ local plugins = {
         -- Optional, default tags to add to each new daily note created.
         default_tags = { "daily-notes" },
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = "templates/diary template.md",
+        template = "_templates/diary template.md",
       },
       templates = {
-        folder = "templates",
+        folder = "_templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
         substitutions = {
@@ -102,24 +102,26 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
     opts = {
-      -- Example session configuration for a session called "pomodoro".
-      me = {
-        { name = "Work", duration = "10m" },
-        { name = "Short Break", duration = "5m" },
-        { name = "Work", duration = "10m" },
-        { name = "Short Break", duration = "5m" },
-        { name = "Work", duration = "10m" },
-        { name = "Short Break", duration = "5m" },
-        { name = "Work", duration = "10m" },
-        { name = "Long Break", duration = "1h" },
-      },
-      pomodoro = {
-        { name = "Work", duration = "25m" },
-        { name = "Short Break", duration = "5m" },
-        { name = "Work", duration = "25m" },
-        { name = "Short Break", duration = "5m" },
-        { name = "Work", duration = "25m" },
-        { name = "Long Break", duration = "15m" },
+      sessions = {
+        -- Example session configuration for a session called "pomodoro".
+        me = {
+          { name = "Work", duration = "10m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "10m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "10m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "10m" },
+          { name = "Long Break", duration = "1h" },
+        },
+        pomodoro = {
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "25m" },
+          { name = "Long Break", duration = "15m" },
+        },
       },
     }
   },
@@ -326,7 +328,37 @@ local plugins = {
   --     }
   --   end
   -- },
-
+  {
+    "nwiizo/cargo.nvim",
+    build = "cargo build --locked --release",
+    config = function()
+      require("cargo").setup({
+        window_width = 0.8,
+        window_height = 0.8,
+        border = "rounded",
+        auto_close = true,
+        close_timeout = 5000,
+      })
+    end,
+    ft = { "rust" },
+    cmd = {
+      "CargoBench",
+      "CargoBuild",
+      "CargoClean",
+      "CargoDoc",
+      "CargoNew",
+      "CargoRun",
+      "CargoRunTerm",
+      "CargoTest",
+      "CargoUpdate",
+      "CargoCheck",
+      "CargoClippy",
+      "CargoAdd",
+      "CargoRemove",
+      "CargoFmt",
+      "CargoFix"
+    }
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
